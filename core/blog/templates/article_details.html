@@ -8,8 +8,9 @@
 
 <h1> {{post.title}} </h1>
 <small>By: {{post.author}} </small> <br/>
+<hr>
 {{post.body}}
-<br/>
+<br/><br/><br/>
 <a href= "{% url 'home' %}" class="btn btn-danger dropdown-toggle">Back</a>
 
 {% endblock %}
