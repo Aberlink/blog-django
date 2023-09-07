@@ -8,7 +8,7 @@ from .forms import PostForm, UpdatePostForm
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
-    ordering = ['-id']
+    ordering = ['-publicated']
     
 class ArticleDetailView(DetailView):
     model = Post
