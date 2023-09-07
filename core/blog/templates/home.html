@@ -10,12 +10,13 @@
 
 <ul>
     {%for post in object_list %}
-    <li>
-        <a href="{% url 'article_detail' post.pk %}">{{post.title}} </a> ||
-        {{post.author}} || {{post.author.email}} <br/>
-        {{post.body}}
-        </li>
-        {%endfor%}
-    </ul>
+        <li>
+            <a href="{% url 'article_detail' post.pk %}">{{post.title}} </a> ||
+            {{post.author}} || 
+            {{post.author.email}} ||
+            <a href= "{% url 'update_post' post.pk %}" class="btn btn-warning dropdown-toggle">Edit</a>
+            </li>
+            {%endfor%}
+        </ul>
 
 {% endblock %}

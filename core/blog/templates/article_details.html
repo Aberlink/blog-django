@@ -6,11 +6,15 @@
 
 {% block content%}
 
-<h1> {{post.title}} </h1>
-<small>By: {{post.author}} </small> <br/>
+<h3> {{post.title}} </h3>
+<h5>By: {{post.author}} </small> <br/>
 <hr>
 {{post.body}}
 <br/><br/><br/>
-<a href= "{% url 'home' %}" class="btn btn-danger dropdown-toggle">Back</a>
+<a href= "{% url 'update_post' post.pk %}" class="btn btn-warning dropdown-toggle">Edit</a>
+<a href= "{% url 'delete' post.pk %}" class="btn btn-danger dropdown-toggle">Delete</a>
+<a href= "{% url 'home' %}" class="btn btn-success dropdown-toggle">Back</a>
 
 {% endblock %}
+
+
