@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    Category View
+{% endblock %}
+
+{% block content%}
+    <br/><br/><br/>
+    <ul>
+        {%for post in category_posts %}
+            <li>
+                <a href="{% url 'article_detail' post.pk %}">{{post.title}} </a> ||
+                {{post.author}} || 
+                {{post.author.email}} ||
+                <a href= "{% url 'update_post' post.pk %}" class="btn btn-warning dropdown-toggle">Edit</a>
+                </li>
+                {%endfor%}
+            </ul>
+    <br/>
+    <a href= "{% url 'category' %}" class="btn btn-success dropdown-toggle">Back</a>
+
+{% endblock %}

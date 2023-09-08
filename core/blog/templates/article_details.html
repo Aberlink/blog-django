@@ -7,6 +7,9 @@
 {% block content%}
 
 <h3> {{post.title}} </h3>
+<br/>
+<h5> Category: {{post.category}}</h5>
+
 <h5>By: {{post.author}} Created: {{post.publicated}}</small> <br/>
 <hr>
 {{post.body|safe}}

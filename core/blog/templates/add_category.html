@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    Add Category
+{% endblock %}
+
+{% block content%}
+{%if user.is_authenticated%}
+    <h1>Add Category</h1>
+    <br/>
+    <div class="form-group">
+        <form method='POST'>
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-success dropdown-toggle">Post</button>
+    </div>
+{%else%}
+    <strong>You Shall Not Pass!!</strong>
+{%endif%}
+
+{% endblock %}
