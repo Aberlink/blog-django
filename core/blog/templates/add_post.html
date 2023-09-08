@@ -13,9 +13,14 @@
             {% csrf_token %}
             {{form.as_p}}
             <button class="btn btn-success dropdown-toggle">Post</button>
-    </div>
+        </div>
+        <script>
+            var name = "{{user.id}}";
+            document.getElementById("author_form").value = name;
+        </script>
 {%else%}
     <strong>You Shall Not Pass!!</strong>
 {%endif%}
+
 
 {% endblock %}

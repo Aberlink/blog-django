@@ -7,14 +7,16 @@
 {% block content%}
 
 {%if user.is_authenticated%}
-    <h1>Update Post</h1>
-    <br/>
-    <div class="form-group">
-        <form method='POST'>
-            {% csrf_token %}
-            {{form.as_p}}
-            <button class="btn btn-success dropdown-toggle">Update</button>
-    </div>
+    {%if user == post.author%}  
+        <h1>Update Post</h1>
+        <br/>
+        <div class="form-group">
+            <form method='POST'>
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-success dropdown-toggle">Update</button>
+        </div>
+    {%endif%}
 {%else%}
     <strong>You Shall Not Pass!!</strong>
 {%endif%}
