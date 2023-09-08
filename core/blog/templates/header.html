@@ -1,5 +1,10 @@
 <ul class="nav nav-pills">
     <li role="presentation" class="active"><a href="{% url 'home' %}">Home</a></li>
-    <li role="presentation"><a href="{% url 'add_post' %}">Add New Post</a></li>
-    <li role="presentation"><a href="#">Messages</a></li>
+    {%if user.is_authenticated%}
+        <li role="presentation"><a href="{% url 'add_post' %}">Add New Post</a></li>
+        <li role="presentation"><a href="{% url 'logout' %}">Logout</a></li>
+    {%else%}
+        <li role="presentation"><a href="{% url 'login' %}">Login</a></li>
+        <li role="presentation"><a href="{% url 'register' %}">Register</a></li>
+    {%endif%}
 </ul>
