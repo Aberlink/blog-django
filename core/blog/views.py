@@ -1,6 +1,6 @@
 from typing import Any, Dict
 from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import (
     ListView,
     DetailView,
@@ -11,6 +11,7 @@ from django.views.generic import (
 
 from .models import Post, Category
 from .forms import PostForm, UpdatePostForm, CategoryForm
+from django.http import HttpResponseRedirect
 
 
 class HomeView(ListView):
@@ -28,6 +29,12 @@ class HomeView(ListView):
 class ArticleDetailView(DetailView):
     model = Post
     template_name = "article_details.html"
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        post = Post.objects.get(id=self.kwargs["pk"])
+        total_likes = post.count_likes()
+        context = super().get_context_data(**kwargs)
+        context['total_likes'] = total_likes
+        return context
 
 
 class AddPostView(CreateView):
@@ -75,3 +82,16 @@ class CategoryDetailView(ListView):
 class CategoryView(ListView):
     model = Category
     template_name = "category.html"
+    
+    
+def LikeView(request, pk):
+    post = Post.objects.get(id=pk) 
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('article_detail', args=[str(pk),]))
+
+def UnlikeView(request, pk):
+    post = Post.objects.get(id=pk) 
+    post.likes.remove(request.user)
+    return HttpResponseRedirect(reverse('article_detail', args=[str(pk),]))
+    
+

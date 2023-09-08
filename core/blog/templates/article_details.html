@@ -21,7 +21,24 @@
     {%endif%}
 {%endif%}
 <a href= "{% url 'home' %}" class="btn btn-success dropdown-toggle">Back</a>
+<br/>
+<hr>
+<br/>
 
+<div>
+    <form action="{% url 'like_post' post.pk %}"
+    method="POST">
+        {%csrf_token%}
+        <button type='submit' class="btn btn-primary" >Like</button>
+
+    </form>
+    <form action="{% url 'unlike_post' post.pk %}"
+    method="POST">
+        {%csrf_token%}
+        <button type='submit' class="btn btn-danger">Unlike</button>
+    </form>
+    {{total_likes}} likes
+</div>
 {% endblock %}
 
 

@@ -23,6 +23,10 @@ class Post(models.Model):
     )
     body = models.TextField()
     publicated = models.DateField(auto_now_add=True)
+    likes = models.ManyToManyField(User, related_name='blog_posts')
+    
+    def count_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return f"{self.title} | {str(self.author)}"
