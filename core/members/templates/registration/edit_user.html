@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
 
 {% block title%}
-    Edit Post
+    Edit User
 {% endblock %}
 
 {% block content%}
 
 {%if user.is_authenticated%}
-    {%if user == post.author%}  
-        <h1>Update Post</h1>
+        <h1>Update User</h1>
         <br/>
         <div class="form-group">
             <form method='POST'>
                 {% csrf_token %}
-                {{form.media}}
                 {{form.as_p}}
                 <button class="btn btn-success dropdown-toggle">Update</button>
         </div>
-    {%endif%}
+        <br/>
+        <a href= "{% url 'change_password' %}" class="btn btn-warning dropdown-toggle">Change Password</a>
 {%else%}
     <strong>You Shall Not Pass!!</strong>
 {%endif%}

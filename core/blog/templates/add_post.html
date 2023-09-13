@@ -9,8 +9,9 @@
     <h1>Add Post</h1>
     <br/>
     <div class="form-group">
-        <form method='POST'>
+        <form method='POST' enctype="multipart/form-data">
             {% csrf_token %}
+            {{form.media}}
             {{form.as_p}}
             <button class="btn btn-success dropdown-toggle">Post</button>
         </div>

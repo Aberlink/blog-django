@@ -16,6 +16,7 @@
     {%if user.is_authenticated%}
         <li role="presentation"><a href="{% url 'add_post' %}">Add New Post</a></li>
         <li role="presentation"><a href="{% url 'add_category' %}">Add Category</a></li>
+        <li role="presentation"><a href="{% url 'user_profile' user.username%}">User Profile</a></li>
         <li role="presentation"><a href="{% url 'logout' %}">Logout</a></li>
         <p class="navbar-text navbar-right">Signed in as {{user.username}}</p>
 

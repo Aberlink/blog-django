@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title%}
+{% endblock %}
+
+{% block content%}
+<br/><br/>
+<h3 class="text-center"> User details </h3>
+<br/>
+<table class="table table-hover">
+    <tr>
+      <th>Username</th>
+      <td>{{ user.username }}</td>
+    </tr>
+    <tr>
+      <th>First Name</th>
+      <td>{{ user.first_name }}</td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td>{{ user.last_name }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ user.email }}</td>
+    </tr>
+  </table>
+  
+
+<a href= "{% url 'update_user' user.username%}" class="btn btn-warning dropdown-toggle">Edit Profile</a>
+<a href= "{% url 'home' %}" class="btn btn-success dropdown-toggle">Back</a>
+{% endblock %}
+
+

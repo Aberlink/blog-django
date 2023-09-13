@@ -12,6 +12,10 @@
 
 <h5>By: {{post.author}} Created: {{post.publicated}}</small> <br/>
 <hr>
+
+{%if post.header_image%}
+    <img src="{{post.header_image.url}}"><br/>
+{%endif%}
 {{post.body|safe}}
 <br/><br/><br/>
 {%if user.is_authenticated%}
@@ -20,25 +24,26 @@
         <a href= "{% url 'delete' post.pk %}" class="btn btn-danger dropdown-toggle">Delete</a>
     {%endif%}
 {%endif%}
-<a href= "{% url 'home' %}" class="btn btn-success dropdown-toggle">Back</a>
 <br/>
+
+{%if user.is_authenticated%}
+    <div>
+        <form action="{% url 'like_post' post.pk %}"
+        method="POST">
+            {%csrf_token%}
+            {%if liked%}
+                <button type='submit' class="btn btn-danger" >Unike</button>
+            {%else%}
+                <button type='submit' class="btn btn-primary" >Like</button>
+            {%endif%}
+        </form>
+        <br/>
+    </div>
+{%endif%}
+{{total_likes}} likes
 <hr>
 <br/>
-
-<div>
-    <form action="{% url 'like_post' post.pk %}"
-    method="POST">
-        {%csrf_token%}
-        <button type='submit' class="btn btn-primary" >Like</button>
-
-    </form>
-    <form action="{% url 'unlike_post' post.pk %}"
-    method="POST">
-        {%csrf_token%}
-        <button type='submit' class="btn btn-danger">Unlike</button>
-    </form>
-    {{total_likes}} likes
-</div>
+<a href= "{% url 'home' %}" class="btn btn-success dropdown-toggle">Back</a>
 {% endblock %}
 
 
