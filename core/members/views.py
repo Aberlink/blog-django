@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from django.core.exceptions import PermissionDenied
+from .models import Profile
 
 
 from .forms import SignUpForm, UpdateUserForm
@@ -17,19 +18,15 @@ class UserRegistrationView(CreateView):
 
 
 class UserDetailView(DetailView):
-    model = User
+    model = Profile
     template_name = "registration/user_profile.html"
 
     def get_object(self):
         username = self.kwargs["user"]
-        current_user = self.request.user
-
-        if username == current_user.username:
-            return get_object_or_404(User, username=username)
-        else:
-            raise PermissionDenied(
-                "You don't have permission to view this user's profile"
-            )
+     
+        user = get_object_or_404(User, username=username)
+        return get_object_or_404(Profile, user=user)
+   
 
 
 class UpdateUserView(UpdateView):

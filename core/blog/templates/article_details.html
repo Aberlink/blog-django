@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title%}
     {{post.title_tag}}
@@ -44,6 +45,43 @@
 <hr>
 <br/>
 <a href= "{% url 'home' %}" class="btn btn-success dropdown-toggle">Back</a>
+<br/><br/>
+
+
+
+  <div class="container">
+    <div class="row" >
+      <div class="col-md-2">
+        {%if post.author.profile.profile_image%}
+            <img src="{{ post.author.profile.profile_image.url }}" alt="" class="img-circle img-responsive">
+        {%else%}
+            <img src="{% static 'members/images/def_pic.png' %}" alt="" class="img-circle img-responsive">
+        {%endif%}
+        </div>
+      <div class="col-md-5">
+        <table class="table table-bordered">
+            <tr>
+                <th>First Name</th>
+                <td>{{post.author.first_name }}</td>
+              </tr>
+              <tr>
+                <th>Last Name</th>
+                <td>{{post.author.last_name }}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>{{post.author.email }}</td>
+              </tr>
+              <tr>
+                <th>LinkedIn</th>
+                <td>{{post.author.profile.linkedIn }}</td>
+              </tr>
+            </table>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
+
 
 

@@ -17,6 +17,7 @@
         </div>
         <br/>
         <a href= "{% url 'change_password' %}" class="btn btn-warning dropdown-toggle">Change Password</a>
+        <a href= "{% url 'user_profile' user.username%}" class="btn btn-success dropdown-toggle">Back</a> 
 {%else%}
     <strong>You Shall Not Pass!!</strong>
 {%endif%}

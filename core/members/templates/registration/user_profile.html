@@ -7,28 +7,45 @@
 <br/><br/>
 <h3 class="text-center"> User details </h3>
 <br/>
+{%if profile.profile_image%}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <img src="{{ profile.profile_image.url }}" alt="" class="img-rounded img-fluid mx-auto d-block">
+      </div>
+    </div>
+  </div>
+
+<br/><br/>
+{%endif%}
+
 <table class="table table-hover">
     <tr>
       <th>Username</th>
-      <td>{{ user.username }}</td>
+      <td>{{ profile.user.username }}</td>
     </tr>
     <tr>
       <th>First Name</th>
-      <td>{{ user.first_name }}</td>
+      <td>{{ profile.user.first_name }}</td>
     </tr>
     <tr>
       <th>Last Name</th>
-      <td>{{ user.last_name }}</td>
+      <td>{{ profile.user.last_name }}</td>
     </tr>
     <tr>
       <th>Email</th>
-      <td>{{ user.email }}</td>
+      <td>{{ profile.user.email }}</td>
+    </tr>
+      <th>LinkedIn</th>
+      <td>{{ profile.linkedIn }}</td>
     </tr>
   </table>
   
 
-<a href= "{% url 'update_user' user.username%}" class="btn btn-warning dropdown-toggle">Edit Profile</a>
-<a href= "{% url 'home' %}" class="btn btn-success dropdown-toggle">Back</a>
+{%if user == profile.user%}
+  <a href= "{% url 'update_user' profile.user.username%}" class="btn btn-warning dropdown-toggle">Edit Profile</a>
+{%endif%}
+<a href= "{% url 'home' %}" class="btn btn-success dropdown-toggle">Back</a> 
 {% endblock %}
 
 
